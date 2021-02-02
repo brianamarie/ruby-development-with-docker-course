@@ -7,7 +7,7 @@ before:
   - type: createPullRequest
     title: Welcome!
     body: 01_pull_body.md
-    branch: create-dockerfile
+    branch: add-dockerfile
 steps:
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
