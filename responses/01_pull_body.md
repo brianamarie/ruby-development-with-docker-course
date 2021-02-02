@@ -13,17 +13,15 @@ If you need docker, you can install it [here](https://www.docker.com/products/do
 
 ## Installing Ruby...?
 
-On some systems like macOS, Ruby comes installed. However, what if you're on a machine that does not have Ruby? Or if you want to use a different language instead? Crystal? Golang? Rust? Installation of language tools are trivial. However, if you're on a team that needs to move fast, the need of sharing installation scripts, instructions or whatnot more-often-than-not requires _some_ overhead.
+On some systems like macOS, Ruby comes installed. However, what if you're on a machine that does not have Ruby? Or if you want to use a different language instead? Crystal? Golang? Rust? Installation of language tools are trivial. However, if you're on a team that needs to move fast, sharing installation scripts, instructions or whatnot more-often-than-not requires _some_ overhead.
 
-This is where Docker can come in handy. You can create and version containers with all dependencies built in. Almost as important is that you also spare your fellow team mates the task of going through local-machine setups, either through a wiki or time-consuming provisioning scripts.
+This is where Docker can come in handy. You can create and version containers with all dependencies built in. Almost as important is that you also spare your fellow team mates the task of going through local-machine setups, either through a wiki, doc or some other time-consuming provisioning scripts.
 
 _this isn't a knock on machine provisioning tools btw, more just a comment on the number of things such tools would need to install; e.g.: `my ansible scripts install rails, postgres, redis, etc etc etc` vs `my ansible scripts install a specific version of docker - scripts for running things locally are defined in my repo`_
 
 ## Ok, Not Installing Ruby.
 
 So now that you have docker you should be able to get started!
-
-_if not, check out the [`docker hello-world` image](https://hub.docker.com/_/hello-world/)_
 
 Most languages support official images for their languages. Ruby is one such example.
 
@@ -35,6 +33,13 @@ So instead of installing Ruby locally on your machine, we can simply pull down a
 ruby-development-with-docker-course octocat$  docker run --rm ruby:alpine ruby --version
 ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-linux-musl]
 ```
+
+This command:
+1. downloaded the `ruby:alpine` image from Docker Hub
+2. ran the command `ruby --version` in that container, outputting the version
+3. exited and removed the container
+
+_NOTE: a `container` is a running **instance** of the `image` - so after this command, the `ruby:alpine` image still exists on your machine_
 
 The nice thing about this image is that it also includes `gem` and `bundle` - commandline tools for Ruby that help you manage libraries (gems)!
 
