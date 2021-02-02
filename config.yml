@@ -1,0 +1,16 @@
+title: Ruby Development With Docker
+description: Learn how to develop Ruby by leveraging docker.
+template:
+  repo: ruby-development-with-docker-template
+  name: ruby-development-with-docker
+before:
+  - type: createIssue
+    title: Welcome!
+    body: new-issue.md
+steps:
+  - title: First step
+    description: The first step in your course
+    event: issues.assigned
+    link: '{{ repoUrl }}'
+    actions:
+      - type: closeIssue
