@@ -4,13 +4,18 @@ template:
   repo: ruby-development-with-docker-template
   name: ruby-development-with-docker
 before:
-  - type: createIssue
+  - type: createPullRequest
     title: Welcome!
-    body: new-issue.md
+    body: 01_pull_body.md
+    branch: create-dockerfile
 steps:
-  - title: First step
-    description: The first step in your course
-    event: issues.assigned
-    link: '{{ repoUrl }}'
+  - title: Create your Ruby Docker container
+    description: Create a docker container with Ruby installed.
+    event: pull_request.synchronize
+    link: '{{ repoUrl }}/pull/1'
     actions:
-      - type: closeIssue
+      - type: mergePullRequest
+        pullRequest: Welcome!
+      - type: respond
+        issue: Welcome!
+        body: 01_pull_request_merged.md
