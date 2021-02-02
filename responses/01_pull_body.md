@@ -43,9 +43,8 @@ _NOTE: a `container` is a running **instance** of the `image` - so after this co
 
 The nice thing about this image is that it also includes `gem` and `bundle` - commandline tools for Ruby that help you manage libraries (gems)!
 
-# Box It Up!
-
-Now let's build your Docker container!
+<h3 align="center">Now let's build your Docker container!</h3>
+<hr>
 
 `Wait, but why build a container when I already have one?`
 
@@ -60,3 +59,8 @@ FROM ruby:alpine3.13
 ## Steps
 1. [Edit the Dockerfile in this branch]({{ repoUrl }}/edit/add-dockerfile/Dockerfile) and commit. Doing that will update this pull-request
 2. I'll respond after I detect a commit :)
+
+
+<hr>
+
+> _Sometimes I respond too fast for the page to update! If you perform an expected action and don't see a response from me, wait a few seconds and refresh the page for your next steps._
