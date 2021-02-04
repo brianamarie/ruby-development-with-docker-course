@@ -1,21 +1,62 @@
 title: Ruby Development With Docker
 description: Learn how to develop Ruby by leveraging docker.
+
 template:
   repo: ruby-development-with-docker-template
   name: ruby-development-with-docker
+
 before:
   - type: createPullRequest
     title: Welcome!
     body: 01_pull_body.md
-    head: add-dockerfile
+    head: add-ruby-to-dockerfile
+    action_id: first_pr
+
 steps:
+  # TODO: add gates for actual checks against GH actions
+
+  # introduce user to creating a container, adding Ruby by using a parent container
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     event: pull_request.synchronize
-    link: '{{ repoUrl }}/pull/1'
+    link: '{{ actions.first_pr.data.html_url }}'
     actions:
       - type: mergePullRequest
         pullRequest: Welcome!
+      - type: createPullRequest
+        title: Building Up The Ruby Environment
+        body: 02_pull_body.md
+        head: adding-gemfile
+        action_id: second_pr
       - type: respond
         issue: Welcome!
-        with: 01_pull_request_merged.md
+        with: 01_pull_request_dockerfile_updated.md
+
+  # introduce user to the concept of installing dependencies, persisting them via containers
+  - title: Adding Dependencies into Your Docker Container
+    description: Create your Gemfile, installing dependencies into your container.
+    event: pull_request.synchronize
+    link: '{{ actions.second_pr.data.html_url }}'
+    actions:
+      - type: mergePullRequest
+        pullRequest: Building Up The Ruby Environment
+      - type: createPullRequest
+        title: Writing Code!
+        body: 03_pull_body.md
+        head: adding-code
+        action_id: third_pr
+      - type: respond
+        issue: Building Up The Ruby Environment
+        with: 02_dependencies_added.md
+
+  # finally write some code, teach user how to run tests in the container locally
+  - title: Writing Code!
+    description: Start writing code, learn how to develop within your container.
+    event: pull_request.synchronize
+    link: '{{ actions.third_pr.data.html_url }}'
+    actions:
+      - type: mergePullRequest
+        pullRequest: Writing Code!
+      - type: respond
+        issue: Writing Code!
+        with: 03_congrats.md
