@@ -11,6 +11,16 @@ before:
     body: 01_pull_body.md
     head: add-ruby-to-dockerfile
     action_id: first_pr
+  - type: createPullRequest
+    title: Building Up The Ruby Environment
+    body: 02_pull_body.md
+    head: adding-gemfile
+    action_id: second_pr
+  - type: createPullRequest
+    title: Writing Code!
+    body: 03_pull_body.md
+    head: adding-code
+    action_id: third_pr
 
 steps:
   # TODO: add gates for actual checks against GH actions
@@ -19,13 +29,8 @@ steps:
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     event: pull_request.synchronize
-    link: '{{ repoUrl }}/pull/1'
+    link: '{{ actions.first_pr.data.html_url }}'
     actions:
-      - type: createPullRequest
-        title: Building Up The Ruby Environment
-        body: 02_pull_body.md
-        head: adding-gemfile
-        action_id: second_pr
       - type: respond
         issue: Welcome!
         with: 01_pull_request_dockerfile_updated.md
@@ -40,13 +45,8 @@ steps:
   - title: Adding Dependencies into Your Docker Container
     description: Create your Gemfile, installing dependencies into your container.
     event: pull_request.synchronize
-    link: '{{ dependenciesPRLink }}'
+    link: '{{ actions.second_pr.data.html_url }}'
     actions:
-      - type: createPullRequest
-        title: Writing Code!
-        body: 03_pull_body.md
-        head: adding-code
-        action_id: third_pr
       - type: respond
         issue: Building Up The Ruby Environment
         with: 02_dependencies_added.md
@@ -61,7 +61,7 @@ steps:
   - title: Writing Code!
     description: Start writing code, learn how to develop within your container.
     event: pull_request.synchronize
-    link: '{{ finalPRLink }}'
+    link: '{{ actions.third_pr.data.html_url }}'
     actions:
       - type: respond
         issue: Writing Code!
