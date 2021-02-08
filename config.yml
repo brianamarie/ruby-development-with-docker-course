@@ -19,7 +19,7 @@ steps:
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     event: pull_request.synchronize
-    link: '{{ actions.first_pr.data.html_url }}'
+    link: '{{ repoUrl }}/pull/1'
     actions:
       - type: mergePullRequest
         pullRequest: Welcome!
@@ -36,7 +36,7 @@ steps:
   - title: Adding Dependencies into Your Docker Container
     description: Create your Gemfile, installing dependencies into your container.
     event: pull_request.synchronize
-    link: '{{ actions.second_pr.data.html_url }}'
+    link: '{{ repoUrl }}/pull/2'
     actions:
       - type: mergePullRequest
         pullRequest: Building Up The Ruby Environment
@@ -53,7 +53,7 @@ steps:
   - title: Writing Code!
     description: Start writing code, learn how to develop within your container.
     event: pull_request.synchronize
-    link: '{{ actions.third_pr.data.html_url }}'
+    link: '{{ repoUrl }}/pull/3'
     actions:
       - type: mergePullRequest
         pullRequest: Writing Code!
