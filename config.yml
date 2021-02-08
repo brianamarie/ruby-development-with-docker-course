@@ -30,18 +30,18 @@ steps:
         issue: Welcome!
         with: 01_pull_request_dockerfile_updated.md
         data:
-          nextPRLink: '{{ actions.second_pr.data.html_url }}'
+          dependenciesPRLink: '{{ actions.second_pr.data.html_url }}'
       - type: mergePullRequest
         pullRequest: Welcome!
+      - type: deleteBranch
+        branch: add-ruby-to-dockerfile
 
   # introduce user to the concept of installing dependencies, persisting them via containers
   - title: Adding Dependencies into Your Docker Container
     description: Create your Gemfile, installing dependencies into your container.
     event: pull_request.synchronize
-    link: '{{ repoUrl }}/pull/2'
+    link: '{{ dependenciesPRLink }}'
     actions:
-      - type: mergePullRequest
-        pullRequest: Building Up The Ruby Environment
       - type: createPullRequest
         title: Writing Code!
         body: 03_pull_body.md
@@ -50,15 +50,23 @@ steps:
       - type: respond
         issue: Building Up The Ruby Environment
         with: 02_dependencies_added.md
+        data:
+          finalPRLink: '{{ actions.third_pr.data.html_url }}'
+      - type: mergePullRequest
+        pullRequest: Building Up The Ruby Environment
+      - type: deleteBranch
+        branch: adding-gemfile
 
   # finally write some code, teach user how to run tests in the container locally
   - title: Writing Code!
     description: Start writing code, learn how to develop within your container.
     event: pull_request.synchronize
-    link: '{{ repoUrl }}/pull/3'
+    link: '{{ finalPRLink }}'
     actions:
-      - type: mergePullRequest
-        pullRequest: Writing Code!
       - type: respond
         issue: Writing Code!
         with: 03_congrats.md
+      - type: mergePullRequest
+        pullRequest: Writing Code!
+      - type: deleteBranch
+        branch: adding-code
