@@ -18,9 +18,19 @@ steps:
   # introduce user to creating a container, adding Ruby by using a parent container
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
-    event: pull_request.synchronize
     link: '{{ repoUrl }}/pull/1'
+    event: status.state
     actions:
+      - type: gate
+        left: "%payload.state%"
+        operator: ===
+        right: success
+        # expect that a status from GH actions comes in here
+        # first version of the GH action CI tests just makes sure that ruby and bundle exist in the container
+        else:
+          - type: respond
+            with: 01_did_not_change_to_ruby_base.md
+
       - type: createPullRequest
         title: Building Up The Ruby Environment
         body: 02_pull_body.md
