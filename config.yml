@@ -21,14 +21,16 @@ steps:
     event: pull_request.synchronize
     link: '{{ repoUrl }}/pull/1'
     actions:
-      - type: respond
-        issue: Welcome!
-        with: 01_pull_request_dockerfile_updated.md
       - type: createPullRequest
         title: Building Up The Ruby Environment
         body: 02_pull_body.md
         head: adding-gemfile
         action_id: second_pr
+      - type: respond
+        issue: Welcome!
+        with: 01_pull_request_dockerfile_updated.md
+        data:
+          nextPRLink: '{{ actions.second_pr.data.html_url }}'
       - type: mergePullRequest
         pullRequest: Welcome!
 
