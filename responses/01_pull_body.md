@@ -11,6 +11,13 @@ REPOSITORY       TAG       IMAGE ID       CREATED       SIZE
 
 If you need docker, you can install it [here](https://www.docker.com/products/docker-desktop).
 
+Finally, this lab uses GitHub Actions to validate that you're completing the tasks! So make sure that you turn them on or you won't be able to progress. You can enable Actions:
+
+- via the `Actions` tab at the top of this repo
+- click `Enable Actions ...`
+
+![enable actions](https://github.com/kran-learn-something-pls/ruby-development-with-docker-course/blob/main/assets/enable-actions.gif)
+
 ## Installing Ruby...?
 
 On some systems like macOS, Ruby comes installed. However, what if you're on a machine that does not have Ruby? Or if you want to use a different language instead? Crystal? Golang? Rust? Installation of language tools are trivial. However, if you're on a team that needs to move fast, sharing installation scripts, instructions or whatnot more-often-than-not requires _some_ overhead.
