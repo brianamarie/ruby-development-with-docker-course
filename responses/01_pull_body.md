@@ -57,7 +57,7 @@ FROM ruby:alpine3.13
 ```
 
 ## Steps
-1. [Edit the Dockerfile in this branch]({{ repoUrl }}/edit/add-dockerfile/Dockerfile) and commit. Doing that will update this pull-request
+1. [Edit the Dockerfile in this branch]({{ repoUrl }}/edit/add-ruby-to-dockerfile/Dockerfile) and commit. Doing that will update this pull-request
 2. I'll respond after I detect a commit :)
 
 
