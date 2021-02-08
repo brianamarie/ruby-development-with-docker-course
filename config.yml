@@ -32,7 +32,7 @@ steps:
         action_id: contents
       - type: gate
         left: ''
-        operator: test
+        operator: ===
         right: '%actions.contents%'
         else:
           - type: respond
