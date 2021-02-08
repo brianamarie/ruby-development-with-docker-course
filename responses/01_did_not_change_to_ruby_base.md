@@ -1,0 +1,1 @@
+Sorry, but it looks like the edits made to your `Dockerfile` did not result in an image that had both `ruby` and `bundle` installed. Give it another go! I'll be observing new commits and their statuses.
