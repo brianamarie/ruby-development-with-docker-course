@@ -36,7 +36,8 @@ steps:
         issue: Welcome!
         with: debug.md
         data:
-          debug: "%actions.workflowFileContents%"
+          # WTF IS THIS
+          debug: "{{ actions.workflowFileContents }}"
 
         left: "%payload.state%"
         operator: ===
