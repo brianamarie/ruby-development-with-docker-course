@@ -33,9 +33,9 @@ steps:
         left: ''
         operator: '==='
         right: '%actions.contents%'
-        else:
-          - type: respond
-            with: 00_changed_actions_config.md
+        #else:
+        #  - type: respond
+        #    with: 00_changed_actions_config.md
 
       # now check that the GH action actually succeeded
       - type: gate
