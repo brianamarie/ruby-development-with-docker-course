@@ -25,17 +25,17 @@ steps:
           debug: "pulls.listFiles( owner: %payload.repository.owner.login% , repo: %payload.repository.name% , pull_number:  %payload.number% )"
           message: "Fetching via Octokit?"
 
-      - action_id: fileDiffList
-        type: octokit
-        method: pulls.listFiles
-        owner: "%payload.repository.owner.login%"
-        repo: "%payload.repository.name%"
-        pull_number: "%payload.number%"
-      - type: respond
-        with: debug.md
-        data:
-          debug: "%actions.fileDiffList.result%"
-          message: "YO FK ME RIGHT?"
+            # - action_id: fileDiffList
+            #   type: octokit
+            #   method: pulls.listFiles
+            #   owner: "%payload.repository.owner.login%"
+            #   repo: "%payload.repository.name%"
+            #   pull_number: "%payload.number%"
+            # - type: respond
+            #   with: debug.md
+            #   data:
+            #     debug: "%actions.fileDiffList.result%"
+            #     message: "YO FK ME RIGHT?"
 
   - title: Validating Your Ruby Container
     description: Check to see if Ruby is installed in your container
@@ -45,7 +45,7 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: "%payload.status%"
+          debug: "%payload%"
 
       # steps to do after validating that user properly updated dockerfile
       - type: createPullRequest
