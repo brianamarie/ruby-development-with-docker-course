@@ -1,3 +1,3 @@
-🤖 I'm here to help you debug. Payload:
+🤖  I'm here to help you debug. Payload:
 
 {{ debug }}
