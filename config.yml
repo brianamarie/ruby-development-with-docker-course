@@ -31,11 +31,11 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: '%action_cfg_contents.contents%'
+          debug: '%actions.action_cfg_contents.contents%'
       - type: gate
         left: "//"
         operator: ===
-        right: '%action_cfg_contents.contents%'
+        right: '%actions.action_cfg_contents.contents%'
         # expect that a status from GH actions comes in here
         # first version of the GH action CI tests just makes sure that ruby and bundle exist in the container
         else:
