@@ -36,7 +36,7 @@ steps:
         issue: Welcome!
         with: debug.md
         data:
-          debug: '%actions.workflowFileContents%'
+          debug: "%actions.workflowFileContents%"
 
         left: "%payload.state%"
         operator: ===
