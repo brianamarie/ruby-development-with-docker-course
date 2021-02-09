@@ -19,7 +19,13 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      - action_id: tree
+      - type: respond
+        with: debug.md
+        data:
+          debug: "pulls.listFiles( owner: %payload.repository.owner.login% , repo: %payload.repository.name% , pull_number:  %payload.number% )"
+          message: "Fetching via Octokit?"
+
+      - action_id: fileDiffList
         type: octokit
         method: pulls.listFiles
         owner: "%payload.repository.owner.login%"
@@ -28,7 +34,7 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: "%actions.tree%"
+          debug: "%actions.fileDiffList.data%"
           message: "YO FK ME RIGHT?"
 
   - title: Validating Your Ruby Container
