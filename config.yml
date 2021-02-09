@@ -19,12 +19,6 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: check_suite
     actions:
-      - type: respond
-        with: debug
-        data:
-          debug: "%payload%"
-          message: "CHECK SUITE PAYLOAD CAME IN"
-
       - type: gate
         gates:
           - left: "%payload.action%"
@@ -36,6 +30,12 @@ steps:
         else:
           - type: respond
             with: 01_did_not_change_to_ruby_base.md
+
+      - type: respond
+        with: debug
+        data:
+          debug: "%payload%"
+          message: "CHECK SUITE PAYLOAD CAME IN"
 
      ## steps to do after validating that user properly updated dockerfile
      #- type: createPullRequest
