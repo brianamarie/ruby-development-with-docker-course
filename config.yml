@@ -26,7 +26,7 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: "%actions.tree.data%"
+          debug: "%actions.tree%"
 
   - title: Validating Your Ruby Container
     description: Check to see if Ruby is installed in your container
