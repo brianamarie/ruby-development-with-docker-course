@@ -19,10 +19,10 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      - type: getTree
+      - type: octokit
+        method: pulls.listFiles
         action_id: tree
-        recursive: true
-        sha: "%payload.pull_request.head.sha%"
+        pull_request: "%payload.pull_request.number%"
       - type: respond
         with: debug.md
         data:
