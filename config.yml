@@ -31,10 +31,12 @@ steps:
         owner: "%payload.repository.owner.login%"
         repo: "%payload.repository.name%"
         pull_number: "%payload.number%"
+        store:
+          firstPrDiffList: "%result%"
       - type: respond
         with: debug.md
         data:
-          debug: "%actions.fileDiffList.data%"
+          debug: "%store.firstPrDiffList%"
           message: "YO FK ME RIGHT?"
 
   - title: Validating Your Ruby Container
