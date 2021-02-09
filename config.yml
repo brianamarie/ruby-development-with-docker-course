@@ -26,7 +26,7 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: "%actions.tree.data.tree%"
+          debug: "%actions.tree.data%"
 
       # steps to do after validating that user properly updated dockerfile
       - type: createPullRequest
