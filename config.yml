@@ -19,7 +19,7 @@ steps:
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     link: '{{ repoUrl }}/pull/1'
-    event: pull_request.synchronize
+    event: status
     actions:
       # TODO: check that the user didn't change the CI tests
       - type: respond
