@@ -36,7 +36,7 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: "%payload%"
+          debug: "%payload.status%"
 
       # steps to do after validating that user properly updated dockerfile
       - type: createPullRequest
