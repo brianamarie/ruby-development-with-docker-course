@@ -28,6 +28,16 @@ steps:
         data:
           debug: "%actions.tree.data%"
 
+  - title: Validating Your Ruby Container
+    description: Check to see if Ruby is installed in your container
+    link: '{{ repoUrl }}/pull/1'
+    event: status
+    actions:
+      - type: respond
+        with: debug.md
+        data:
+          debug: "%payload%"
+
       # steps to do after validating that user properly updated dockerfile
       - type: createPullRequest
         title: Building Up The Ruby Environment
