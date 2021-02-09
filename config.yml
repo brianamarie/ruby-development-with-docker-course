@@ -19,6 +19,12 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: check_suite
     actions:
+      - type: respond
+        with: debug
+        data:
+          debug: "%payload%"
+          message: "CHECK SUITE PAYLOAD CAME IN"
+
       - type: gate
         gates:
           - left: "%payload.action%"
