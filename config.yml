@@ -27,15 +27,16 @@ steps:
       - type: getFileContents
         filename: '.github/workflows/main.yml'
         sha: '%actions.pull_request.data.head.sha%'
-        action_id: contents
-        
+        action_id: action_cfg_contents
       - type: gate
-        left: ''
-        operator: '==='
-        right: '%actions.contents%'
-        #else:
-        #  - type: respond
-        #    with: 00_changed_actions_config.md
+        left: "%payload.state%"
+        operator: ===
+        right: '%action_cfg_contents.contents%'
+        # expect that a status from GH actions comes in here
+        # first version of the GH action CI tests just makes sure that ruby and bundle exist in the container
+        else:
+          - type: respond
+            with: 00_changed_actions_config.md
 
       # now check that the GH action actually succeeded
       - type: gate
