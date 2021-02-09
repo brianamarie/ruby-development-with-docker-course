@@ -21,14 +21,23 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      # TODO: check that the user didn't change the CI tests
+      # user isn't getting help from someone
+      - type: gate
+        left: "%payload.pull_request.head.user.login"
+        operator: ===
+        right: "%user.login%"
+        else:
+          - type: respond
+            with: 00_did_something_bad.md
+            
+      - type: getFileContents
+        filename: '.github/workflows/main.yml'
+        action_id: workflowFileContents
       - type: respond
         with: debug.md
         data:
-          debug: '%payload%'
+          debug: '%actions.workflowFileContents%'
 
-      # now check that the GH action actually succeeded
-      - type: gate
         left: "%payload.state%"
         operator: ===
         right: success
