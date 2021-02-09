@@ -19,14 +19,13 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      - type: getTree
-        action_id: tree
-        recursive: true
-        sha: "%payload.pull_request.head.sha%"
+      - type: octokit
+        method: pulls.listFiles
+        action_id: changedFiles
       - type: respond
         with: debug.md
         data:
-          debug: "%actions.tree.data%"
+          debug: "%actions.changedFiles.data%"
 
       - type: createPullRequest
         title: Building Up The Ruby Environment
