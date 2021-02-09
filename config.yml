@@ -27,7 +27,7 @@ steps:
 
       - action_id: fileDiffList
         type: octokit
-        method: pulls.listFiles
+        method: client.pulls.listFiles
         owner: "%payload.repository.owner.login%"
         repo: "%payload.repository.name%"
         pull_number: "%payload.number%"
