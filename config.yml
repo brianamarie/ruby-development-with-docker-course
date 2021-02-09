@@ -27,12 +27,9 @@ steps:
         else:
           - type: respond
             with: 00_did_something_bad.md
-
-      # debugging PR contents
       - type: getFileContents
         filename: .github/workflows/main.yml
         action_id: workflowFileContents
-
       # WHY TF IS THIS BAD
       # - type: respond
       #   with: debug.md
