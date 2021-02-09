@@ -28,14 +28,16 @@ steps:
           - type: respond
             issue: Welcome!
             with: 00_did_something_bad.md
-      - type: getFileContents
-        filename: .github/workflows/main.yml
-        action_id: workflowFileContents
+
+      - type: getTree
+        action_id: tree
+        recursive: true
+        sha: "%payload.pull_request.head.sha%"
       # WHY TF IS THIS BAD
-      # - type: respond
-      #   with: debug.md
-      #   data:
-      #     debug: '{{ actions }}'
+      - type: respond
+        with: debug.md
+        data:
+          debug: '{{ actions.tree }}'
 
         left: "%payload.state%"
         operator: ===
