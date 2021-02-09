@@ -21,31 +21,12 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      # first checking that the user didn't change the CI tests
-      - type: getPullRequest
-        action_id: pull_request
-      - type: getFileContents
-        filename: '.github/workflows/main.yml'
-        sha: '%actions.pull_request.data.head.sha%'
-        action_id: action_cfg_contents
-      - type: respond
-        with: debug.md
-        data:
-          debug: '%actions.action_cfg_contents.contents%'
-      - type: gate
-        left: "//"
-        operator: ===
-        right: '%actions.action_cfg_contents.contents%'
-        # expect that a status from GH actions comes in here
-        # first version of the GH action CI tests just makes sure that ruby and bundle exist in the container
-        else:
-          - type: respond
-            with: 00_changed_actions_config.md
-
+      # TODO: check that the user didn't change the CI tests
       - type: respond
         with: debug.md
         data:
           debug: '%payload%'
+
       # now check that the GH action actually succeeded
       - type: gate
         left: "%payload.state%"
