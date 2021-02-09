@@ -23,11 +23,10 @@ steps:
         action_id: tree
         recursive: true
         sha: "%payload.pull_request.head.sha%"
-      # WHY TF IS THIS BAD
       - type: respond
         with: debug.md
         data:
-          debug: '{{ actions.tree }}'
+          debug: "actions.tree.data"
 
         left: "%payload.state%"
         operator: ===
