@@ -19,16 +19,6 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      # make sure user isn't getting help from someone
-      - type: gate
-        left: "%payload.pull_request.head.user.login"
-        operator: ===
-        right: "%user.login%"
-        else:
-          - type: respond
-            issue: Welcome!
-            with: 00_did_something_bad.md
-
       - type: getTree
         action_id: tree
         recursive: true
