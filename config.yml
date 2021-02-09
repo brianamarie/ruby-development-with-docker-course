@@ -29,7 +29,7 @@ steps:
         sha: '%actions.pull_request.data.head.sha%'
         action_id: action_cfg_contents
       - type: gate
-        left: '//'
+        left: "//"
         operator: ===
         right: '%action_cfg_contents.contents%'
         # expect that a status from GH actions comes in here
