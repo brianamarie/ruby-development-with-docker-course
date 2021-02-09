@@ -28,18 +28,10 @@ steps:
         filename: '.github/workflows/main.yml'
         sha: '%actions.pull_request.data.head.sha%'
         action_id: contents
-      - type: gate
-        gates:
-          - left: '%actions.contents%'
-            operator: ===
-            right: ''
-          - left: '%payload.sender.login%'
-            operator: ===
-            right: '%user.login%'
         
       - type: gate
         left: ''
-        operator: ===
+        operator: '==='
         right: '%actions.contents%'
         else:
           - type: respond
