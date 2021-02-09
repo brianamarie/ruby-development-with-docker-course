@@ -32,10 +32,13 @@ steps:
       - type: getFileContents
         filename: .github/workflows/main.yml
         action_id: workflowFileContents
+
+      # WHY TF IS THIS BAD
       - type: respond
+        issue: Welcome!
         with: debug.md
         data:
-          debug: "%actions.workflowFileContents%"
+          debug: '{{ actions }}'
 
         left: "%payload.state%"
         operator: ===
