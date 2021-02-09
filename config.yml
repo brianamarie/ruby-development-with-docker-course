@@ -28,6 +28,10 @@ steps:
         filename: '.github/workflows/main.yml'
         sha: '%actions.pull_request.data.head.sha%'
         action_id: action_cfg_contents
+      - type: respond
+        with: debug.md
+        data:
+          debug: '%action_cfg_contents%'
       - type: gate
         left: "//"
         operator: ===
@@ -38,6 +42,10 @@ steps:
           - type: respond
             with: 00_changed_actions_config.md
 
+      - type: respond
+        with: debug.md
+        data:
+          debug: '%payload%'
       # now check that the GH action actually succeeded
       - type: gate
         left: "%payload.state%"
