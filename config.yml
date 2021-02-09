@@ -25,17 +25,17 @@ steps:
           debug: "%payload%"
           message: "CHECK SUITE PAYLOAD CAME IN"
 
-     - type: gate
-       gates:
-         - left: "%payload.action%"
-           operator: ===
-           right: "completed"
-         - left: "%payload.check_suite.conclusion%"
-           operator: ===
-           right: "success"
-       else:
-         - type: respond
-           with: 01_did_not_change_to_ruby_base.md
+      - type: gate
+        gates:
+          - left: "%payload.action%"
+            operator: ===
+            right: "completed"
+          - left: "%payload.check_suite.conclusion%"
+            operator: ===
+            right: "success"
+        else:
+          - type: respond
+            with: 01_did_not_change_to_ruby_base.md
 
      ## steps to do after validating that user properly updated dockerfile
      #- type: createPullRequest
