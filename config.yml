@@ -29,6 +29,15 @@ steps:
         sha: '%actions.pull_request.data.head.sha%'
         action_id: contents
       - type: gate
+        gates:
+          - left: '%actions.contents%'
+            operator: ===
+            right: ''
+          - left: '%payload.sender.login%'
+            operator: ===
+            right: '%user.login%'
+        
+      - type: gate
         left: ''
         operator: ===
         right: '%actions.contents%'
