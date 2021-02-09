@@ -19,22 +19,17 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      - type: respond
-        with: debug.md
-        data:
-          debug: "%payload%"
-          message: "incoming payload"
       - action_id: tree
         type: octokit
         method: pulls.listFiles
         owner: "%payload.repository.owner.login%"
         repo: "%payload.repository.name%"
-        pull_number: "%payload.pull_request.number%"
+        pull_number: "%payload.number%"
       - type: respond
         with: debug.md
         data:
           debug: "%actions.tree%"
-          message: "octokit response"
+          message: "YO FK ME RIGHT?"
 
   - title: Validating Your Ruby Container
     description: Check to see if Ruby is installed in your container
