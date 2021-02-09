@@ -13,15 +13,13 @@ before:
     action_id: first_pr
 
 steps:
-  # TODO: add gates for actual checks against GH actions
-
   # introduce user to creating a container, adding Ruby by using a parent container
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      # user isn't getting help from someone
+      # make sure user isn't getting help from someone
       - type: gate
         left: "%payload.pull_request.head.user.login"
         operator: ===
@@ -29,11 +27,13 @@ steps:
         else:
           - type: respond
             with: 00_did_something_bad.md
-            
+
+      # debugging PR contents
       - type: getFileContents
         filename: '.github/workflows/main.yml'
         action_id: workflowFileContents
       - type: respond
+        issue: Welcome!
         with: debug.md
         data:
           debug: '%actions.workflowFileContents%'
