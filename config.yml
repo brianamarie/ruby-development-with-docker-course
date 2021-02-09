@@ -40,7 +40,7 @@ steps:
   - title: Validating Your Ruby Container
     description: Check to see if Ruby is installed in your container
     link: '{{ repoUrl }}/pull/1'
-    event: status
+    event: check_suite.completed
     actions:
       - type: respond
         with: debug.md
