@@ -17,7 +17,7 @@ steps:
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     link: '{{ repoUrl }}/pull/1'
-    event: check_suite.conclusion
+    event: check_suite.completed
     actions:
     # - type: gate
     #   left: "%payload.check_suite.conclusion%"
