@@ -19,9 +19,15 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
+      - type: respond
+        with: debug.md
+        data:
+          debug: "pulls.listFiles( owner: %payload.repository.owner.login% , repo: %payload.repository.name% , pull_number:  %payload.number% )"
+          message: "Fetching via Octokit?"
+
       - action_id: fileDiffList
         type: octokit
-        method: pulls.listFiles
+        method: octokit.pulls.listFiles
         owner: "%payload.repository.owner.login%"
         repo: "%payload.repository.name%"
         pull_number: "%payload.number%"
