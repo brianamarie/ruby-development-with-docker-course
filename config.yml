@@ -25,33 +25,33 @@ steps:
           debug: "%payload%"
           message: "CHECK SUITE PAYLOAD CAME IN"
 
-      - type: gate
-        gates:
-          - left: "%payload.action%"
-            operator: ===
-            right: "completed"
-          - left: "%payload.check_suite.conclusion%"
-            operator: ===
-            right: "success"
-        else:
-          - type: respond
-            with: 01_did_not_change_to_ruby_base.md
+     #- type: gate
+     #  gates:
+     #    - left: "%payload.action%"
+     #      operator: ===
+     #      right: "completed"
+     #    - left: "%payload.check_suite.conclusion%"
+     #      operator: ===
+     #      right: "success"
+     #  else:
+     #    - type: respond
+     #      with: 01_did_not_change_to_ruby_base.md
 
-      # steps to do after validating that user properly updated dockerfile
-      - type: createPullRequest
-        title: Building Up The Ruby Environment
-        body: 02_pull_body.md
-        head: adding-gemfile
-        action_id: second_pr
-      - type: respond
-        issue: Welcome!
-        with: 01_pull_request_dockerfile_updated.md
-        data:
-          dependenciesPRLink: '{{ actions.second_pr.data.html_url }}'
-      - type: mergePullRequest
-        pullRequest: Welcome!
-      - type: deleteBranch
-        branch: add-ruby-to-dockerfile
+     ## steps to do after validating that user properly updated dockerfile
+     #- type: createPullRequest
+     #  title: Building Up The Ruby Environment
+     #  body: 02_pull_body.md
+     #  head: adding-gemfile
+     #  action_id: second_pr
+     #- type: respond
+     #  issue: Welcome!
+     #  with: 01_pull_request_dockerfile_updated.md
+     #  data:
+     #    dependenciesPRLink: '{{ actions.second_pr.data.html_url }}'
+     #- type: mergePullRequest
+     #  pullRequest: Welcome!
+     #- type: deleteBranch
+     #  branch: add-ruby-to-dockerfile
 
   # introduce user to the concept of installing dependencies, persisting them via containers
   - title: Adding Dependencies into Your Docker Container
