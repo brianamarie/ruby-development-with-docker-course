@@ -30,13 +30,12 @@ steps:
 
       # debugging PR contents
       - type: getFileContents
-        filename: '.github/workflows/main.yml'
+        filename: .github/workflows/main.yml
         action_id: workflowFileContents
       - type: respond
-        issue: Welcome!
         with: debug.md
         data:
-          debug: '{{ actions.workflowFileContents }}'
+          debug: "%actions.workflowFileContents%"
 
         left: "%payload.state%"
         operator: ===
