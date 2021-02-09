@@ -44,6 +44,7 @@ steps:
     actions:
       - type: respond
         with: debug.md
+        issue: Welcome!
         data:
           debug: "%payload%"
 
