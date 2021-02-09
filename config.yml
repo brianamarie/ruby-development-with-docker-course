@@ -19,17 +19,16 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      - type: octokit
-        method: pulls.listFiles
-        action_id: changedFiles
-        owner: '{{ user.login }}'
-        repo: '{{ repo }}'
-        pull_number: 1
+      - type: getTree
+        action_id: tree
+        recursive: true
+        sha: "%payload.pull_request.head.sha%"
       - type: respond
         with: debug.md
         data:
-          debug: "%actions.changedFiles.data%"
+          debug: "%actions.tree.data.tree%"
 
+      # steps to do after validating that user properly updated dockerfile
       - type: createPullRequest
         title: Building Up The Ruby Environment
         body: 02_pull_body.md
