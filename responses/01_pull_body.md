@@ -16,7 +16,7 @@ Finally, this lab uses GitHub Actions to validate that you're completing the tas
 - via the `Actions` tab at the top of this repo
 - click `Enable Actions ...`
 
-![enable actions](https://github.com/kran-learn-something-pls/ruby-development-with-docker-course/blob/main/assets/enable-actions.gif)
+![enable actions](https://github.com/kran-learn-something-pls/ruby-development-with-docker-course/blob/main/assets/enable-actions.gif?raw=true)
 
 ## Installing Ruby...?
 
