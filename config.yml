@@ -26,6 +26,7 @@ steps:
         right: "%user.login%"
         else:
           - type: respond
+            issue: Welcome!
             with: 00_did_something_bad.md
       - type: getFileContents
         filename: .github/workflows/main.yml
