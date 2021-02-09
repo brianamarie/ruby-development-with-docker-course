@@ -31,7 +31,7 @@ steps:
       - type: respond
         with: debug.md
         data:
-          debug: '%action_cfg_contents%'
+          debug: '%action_cfg_contents.contents%'
       - type: gate
         left: "//"
         operator: ===
