@@ -19,9 +19,11 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: pull_request.synchronize
     actions:
-      - type: octokit
+      - action_id: tree
+        type: octokit
         method: pulls.listFiles
-        action_id: tree
+        owner: "%payload.repository.owner.login%"
+        repo: "%payload.repository.name%"
         pull_request: "%payload.pull_request.number%"
       - type: respond
         with: debug.md
