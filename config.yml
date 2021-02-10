@@ -19,7 +19,6 @@ steps:
     link: '{{ repoUrl }}/pull/1'
     event: check_suite.completed
     actions:
-      # just in case other statuses are being written
       - type: getPullRequest
         pullRequest: Welcome!
         action_id: first_pr
@@ -27,7 +26,6 @@ steps:
         left: "%actions.first_pr.data.head.sha%"
         operator: ===
         right: "%payload.check_suite.head_sha%"
-
       - type: gate
         left: "%payload.check_suite.conclusion%"
         operator: ===
@@ -54,10 +52,25 @@ steps:
 
   # introduce user to the concept of installing dependencies, persisting them via containers
   - title: Adding Dependencies into Your Docker Container
-    description: Create your Gemfile, installing dependencies into your container.
-    event: pull_request.synchronize
     link: '{{ repoUrl }}/pull/2'
+    description: Create your Gemfile, installing dependencies into your container.
+    event: check_suite.completed
     actions:
+      - type: getPullRequest
+        pullRequest: Building Up The Ruby Environment
+        action_id: second_pr
+      - type: gate
+        left: "%actions.second_pr.data.head.sha%"
+        operator: ===
+        right: "%payload.check_suite.head_sha%"
+      - type: gate
+        left: "%payload.check_suite.conclusion%"
+        operator: ===
+        right: "success"
+        else:
+          - type: respond
+            with: 02_did_not_install_rubocop.md
+
       - type: createPullRequest
         title: Writing Code!
         body: 03_pull_body.md
@@ -76,9 +89,24 @@ steps:
   # finally write some code, teach user how to run tests in the container locally
   - title: Writing Code!
     description: Start writing code, learn how to develop within your container.
-    event: pull_request.synchronize
+    event: check_suite.completed
     link: '{{ repoUrl }}/pull/3'
     actions:
+      - type: getPullRequest
+        pullRequest: Writing Code!
+        action_id: third_pr
+      - type: gate
+        left: "%actions.third_pr.data.head.sha%"
+        operator: ===
+        right: "%payload.check_suite.head_sha%"
+      - type: gate
+        left: "%payload.check_suite.conclusion%"
+        operator: ===
+        right: "success"
+        else:
+          - type: respond
+            with: 03_tests_failed.md
+
       - type: respond
         issue: Writing Code!
         with: 03_congrats.md
