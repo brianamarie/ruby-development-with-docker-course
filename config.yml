@@ -17,7 +17,7 @@ steps:
   - title: Create your Ruby Docker container
     description: Create a docker container with Ruby installed.
     link: '{{ repoUrl }}/pull/1'
-    event: check_suite
+    event: pull_request.synchronize
     actions:
       - type: getPullRequest
         pullRequest: Welcome!
