@@ -29,7 +29,6 @@ steps:
         right: "%payload.check_suite.head_sha%"
 
       - type: gate
-        gates:
         left: "%payload.check_suite.conclusion%"
         operator: ===
         right: "success"
