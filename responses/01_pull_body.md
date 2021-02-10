@@ -32,7 +32,7 @@ So now that you have docker you should be able to get started!
 
 Most languages support official images for their languages. Ruby is one such example.
 
-[Here's the list of Ruby images that Docker supports](https://hub.docker.com/_/ruby/?tab=tags&page=1&ordering=last_updated)
+[Here's the list of Ruby images that Docker supports](https://hub.docker.com/_/ruby/?tab=tags&page=1&ordering=last_updated).
 
 So instead of installing Ruby locally on your machine, we can simply pull down a Ruby image to use! Try this:
 
