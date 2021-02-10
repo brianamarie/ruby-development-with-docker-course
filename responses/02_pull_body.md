@@ -46,13 +46,13 @@ You'll see in this pull request that we've already prepped some files for you. S
 
 ## Breakdown of Building Containers
 
-Then [`Gemfile`]({{ repoUrl }}/add-ruby-to-dockerfile/Gemfile) in this pull request should be straightfoward enough. It just specifies that we're going to install a `gem` called `minitest` (used for the next step).
+Then [`Gemfile`]({{ repoUrl }}/blob/adding-gemfile/Gemfile) in this pull request should be straightfoward enough. It just specifies that we're going to install a `gem` called `minitest` (used for the next step).
 
 The `Dockerfile` is a bit more interesting though.
 
 For more information on how to build containers via Dockerfiles, check out [the documentation](https://docs.docker.com/engine/reference/builder/).
 
-[A breakdown of the Dockerfile in this branch though]({{ repoUrl }}/add-ruby-to-dockerfile/Dockerfile):
+[A breakdown of the Dockerfile in this branch though]({{ repoUrl }}/blob/adding-gemfile/Dockerfile):
 
 ```sh
 # this is from the last step! this provides ruby & bundler in your container
@@ -76,7 +76,7 @@ RUN bundle install
 
 ## Steps
 
-If you take a closer look at the [GitHub Actions config]({{ repoUrl }}/add-ruby-to-dockerfile/.github/workflows/main.yml) you'll see that we've updated the CI test to now look for `rubocop`. It was already building and testing a container based on your `Dockerfile` so we'll just continue there. Don't worry, interacting and working _inside_ your container will be in the next step :D
+If you take a closer look at the [GitHub Actions config]({{ repoUrl }}/blob/adding-gemfile/.github/workflows/main.yml) you'll see that we've updated the CI test to now look for `rubocop`. It was already building and testing a container based on your `Dockerfile` so we'll just continue there. Don't worry, interacting and working _inside_ your container will be in the next step :D
 
 So now let's try adding another dependency into the `Gemfile`!
 
@@ -86,7 +86,7 @@ All you have to do is add the line:
 gem 'rubocop'
 ```
 
-Into your `Gemfile`. You can do so via [this link]({{ repoUrl }}/edit/add-ruby-to-dockerfile/Gemfile).
+Into your `Gemfile`. You can do so via [this link]({{ repoUrl }}/edit/adding-gemfile/Gemfile).
 Like before, I'll respond after I detect a commit and see that it passes the CI checks :)
 
 <hr>
