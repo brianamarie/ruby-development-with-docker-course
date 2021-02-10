@@ -21,13 +21,13 @@ steps:
     actions:
       - type: getPullRequest
         pullRequest: Welcome!
-        action_id: pr
+        action_id: first_pr
 
       - type: respond
         with: debug.md
         data:
           message: "pls?"
-          debug: "%actions.pr.data%"
+          debug: "%actions.first_pr%"
 
             # - type: gate
             #   gates:
